@@ -16,7 +16,7 @@ import (
 	"github.com/owenrumney/go-sarif/v2/sarif"
 )
 
-var scpGitURLPattern = regexp.MustCompile(`^[a-zA-Z0-9_-]+@[a-zA-Z0-9._-]+:[a-zA-Z0-9/._-]+$`)
+var sshPattern = regexp.MustCompile(`^[a-zA-Z0-9_-]+@[a-zA-Z0-9._-]+:[a-zA-Z0-9/._-]+$`)
 
 func NewFormat(out io.Writer, version string) *Format {
 	return &Format{
@@ -198,5 +198,5 @@ func IsValidGitURL(gitURL string) bool {
 		return parsedURL.Host != "" && parsedURL.Path != ""
 	}
 
-	return scpGitURLPattern.MatchString(gitURL)
+	return sshPattern.MatchString(gitURL)
 }
